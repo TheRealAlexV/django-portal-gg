@@ -37,6 +37,7 @@ THIRD_PARTY_APPS = (
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.openid',
     'allauth.socialaccount.providers.discord',
     'allauth.socialaccount.providers.steam',
     'allauth.socialaccount.providers.twitch',
