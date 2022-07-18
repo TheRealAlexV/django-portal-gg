@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}{{ user.display_name }} - Profile{% endblock %}
+{% block body_css_class %}page-profile{% endblock %}
+
+{% block body_content %}
+  <div class="container-fluid">
+    <header>
+      <h1>{{ thisuser.display_name }}</h1>
+      <div class="email">&lt;{{ request.user.email }}&gt;</div>
+    </header>
+
+    {% if request.user == thisuser %}
+      <a href="{% url 'users:settings_profile' %}">Account settings</a>
+    {% endif %}
+  </div>
+{% endblock %}

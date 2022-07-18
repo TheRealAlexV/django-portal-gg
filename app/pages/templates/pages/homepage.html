@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block body_css_class %}page-homepage{% endblock %}
+
+{% block body_content %}
+  <div class="container-fluid">
+    <header>
+      <h1>Welcome to the Reloaded Account Management Portal</h1>
+      <p>This is where you'll manage all of your game accounts.</p>
+    </header>
+
+    <div class="account">
+      <hr/>
+      {% if not user.is_authenticated %}
+        <p>You're currently not logged in.</p>
+        <div class="actions">
+          <a href="{% url 'account_login' %}" class="btn btn-light">Login</a> <a href="{% url 'account_signup' %}" class="btn btn-primary">Sign up</a>
+        </div>
+      {% else %}
+        <p>Logged in as :
+          <a href="{% url 'users:profile' user.id %}">{{ user.display_name }}</a>
+          &lt;{{ user.email }}&gt; | <a href="{% url 'users:settings_profile' %}">Account settings</a> | <a href="{% url 'account_logout' %}">Logout</a>
+        </p>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

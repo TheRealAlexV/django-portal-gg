@@ -1,0 +1,15 @@
+# Production dependencies
+-r _base.txt
+
+# WSGI Handler
+gevent
+gunicorn
+
+
+# Email backends for Mailgun, Postmark, SendGrid and more
+django-anymail
+
+
+# Redis support
+django-redis
+redis

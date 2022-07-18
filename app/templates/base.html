@@ -1,0 +1,91 @@
+{% load staticfiles i18n compress sass_tags common %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>{% block html_title %}sync-web{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{% block html_description %}{% endblock %}">
+
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <![endif]-->
+
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700|PT+Serif:400,700" rel="stylesheet">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
+
+  {% compress css %}
+    <link href="{% sass_src 'css/styles.scss' %}" rel="stylesheet">
+    {% block css %}
+    {% endblock css %}
+  {% endcompress %}
+
+</head>
+<body class="{% block body_css_class %}{% endblock %}">
+  <nav class="navbar navbar-expand-md navbar-dark">
+    <a class="navbar-brand" href="{% url 'pages:homepage' %}">sync-web</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">some link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">bullahit action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+      </ul>
+      <div class="nav-account ml-auto">
+        {% if not user.is_authenticated %}
+          <a href="{% url 'account_login' %}" class="login">Login</a>
+          <a href="{% url 'account_signup' %}" class="signup">Signup</a>
+        {% else %}
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown active">
+              <button class="nav-link dropdown-toggle" id="userDropdownButton" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ user.display_name }}
+              </button>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdownButton">
+                <a class="dropdown-item" href="{% url 'users:settings_profile' %}"><i class="fas fa-user-circle"></i> Account settings</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'account_logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+              </div>
+            </li>
+          </ul>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  {% alert_messages messages %}
+
+  {% block body_content %}{% endblock %}
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+
+  {% compress js %}
+    <script src="{% static 'js/csrf.js' %}"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+    {% block javascript %}
+    {% endblock javascript %}
+  {% endcompress %}
+</body>
+</html>

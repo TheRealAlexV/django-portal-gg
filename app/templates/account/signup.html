@@ -1,0 +1,49 @@
+{% extends "account/base_account.html" %}
+{% load socialaccount bootstrap4 %}
+
+{% block account_title %}Sign Up{% endblock %}
+{% block account_css_class %}page-account-signup{% endblock %}
+
+{% block account_content %}
+  <h1>Sign up</h1>
+
+  {% get_providers as socialaccount_providers %}
+  {% if socialaccount_providers %}
+    <div class="account-social">
+      <h2>Social accounts</h2>
+      <ul class="social-accounts">
+        {% for provider in socialaccount_providers %}
+          <li>
+            <a class="btn btn-primary"
+               href="{% provider_login_url provider.id process='login' scope=scope auth_params=auth_params %}"
+               title="{{ provider.name }}">Sign up with {{ provider.name }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+      {% include "socialaccount/snippets/login_extra.html" %}
+    </div>
+  {% endif %}
+
+  <h2>Email address</h2>
+  <form class="form-account form-signup" method="post" action="{% url 'account_signup' %}">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <div class="row">
+      <div class="col-md-6">
+        {% bootstrap_field form.display_name %}
+        {% bootstrap_field form.email %}
+        {% bootstrap_field form.password1 %}
+      </div>
+    </div>
+
+    {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+    {% endif %}
+
+    <div class="form-actions">
+      <button class="btn btn-primary" type="submit">Sign up</button>
+      <div class="actions-switch">Already sign up? Go to <a class="link-btn" href="{{ login_url }}"> Login</a> page</div>
+    </div>
+  </form>
+{% endblock %}

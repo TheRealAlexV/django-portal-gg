@@ -1,0 +1,20 @@
+django
+argon2-cffi
+
+# Accounts
+django-allauth
+facebook-sdk
+
+# Config
+django-environ
+
+# Database
+psycopg2 --no-binary psycopg2
+
+# Form
+django-bootstrap4
+
+# Static
+libsass
+django-compressor
+django-sass-processor
