@@ -44,7 +44,7 @@ services:
     environment:
       VIRTUAL_HOST: localhost
       LETSENCRYPT_HOST: localhost
-      LETSENCRYPT_EMAIL: demine0@gmail.com
+      LETSENCRYPT_EMAIL: ${ADMIN_EMAIL}
 
   nginx-proxy:
     image: nginx:stable-alpine

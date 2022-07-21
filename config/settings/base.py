@@ -98,7 +98,7 @@ EMAIL_BACKEND = env('DJANGO_EMAIL_BACKEND', default='django.core.mail.backends.s
 # MANAGER CONFIGURATION
 # ------------------------------------------------------------------------------
 ADMINS = (
-    ("""admin""", 'demine0@gmail.com'),
+    ("""admin""", env('ADMIN_EMAIL')),
 )
 
 MANAGERS = ADMINS
@@ -249,13 +249,13 @@ BOOTSTRAP4 = {
 # CORS_ALLOW_CREDENTIALS = True
 # CORS_ORIGIN_ALLOW_ALL = True
 # CORS_ALLOW_CREDENTIALS = True
-# CSRF_TRUSTED_ORIGINS = ['https://dev.demine0.com']
+# CSRF_TRUSTED_ORIGINS = [env('ADMIN_EMAIL')]
 # CORS_REPLACE_HTTPS_REFERER = True
-# CSRF_COOKIE_DOMAIN = 'dev.demine0.com'
+# CSRF_COOKIE_DOMAIN = env('SITE_DOMAIN')
 # CORS_ORIGIN_WHITELIST = (
-#     'https://dev.demine0.com/',
-#     'dev.demine0.com',
-#     'demine0.com',
+#     'https://' + env('SITE_DOMAIN') + '/',
+#     env('PARENT_DOMAIN'),
+#     env('SITE_DOMAIN'),
 # )
 
 

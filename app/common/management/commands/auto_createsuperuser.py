@@ -13,4 +13,4 @@ class Command(BaseCommand):
                 user_model.objects.get(username='admin')
             except user_model.DoesNotExist:
                 get_user_model().objects.create_superuser(
-                    'admin', 'demine0@gmail.com', 'admin')
+                    'admin', env('ADMIN_EMAIL'), 'admin')
