@@ -240,3 +240,22 @@ SOCIALACCOUNT_FORMS = {
 BOOTSTRAP4 = {
     'set_placeholder': False,
 }
+
+#############
+# CORS CSFF #
+#############
+
+# ALLOWED_HOSTS = []
+# CORS_ALLOW_CREDENTIALS = True
+# CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ALLOW_CREDENTIALS = True
+# CSRF_TRUSTED_ORIGINS = ['https://dev.demine0.com']
+# CORS_REPLACE_HTTPS_REFERER = True
+# CSRF_COOKIE_DOMAIN = 'dev.demine0.com'
+# CORS_ORIGIN_WHITELIST = (
+#     'https://dev.demine0.com/',
+#     'dev.demine0.com',
+#     'demine0.com',
+# )
+
+

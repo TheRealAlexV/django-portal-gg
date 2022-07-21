@@ -2,14 +2,14 @@
 -r _base.txt
 
 # WSGI Handler
-gevent
-gunicorn
+gevent==21.12.0
+gunicorn==20.1.0
 
 
 # Email backends for Mailgun, Postmark, SendGrid and more
-django-anymail
+django-anymail==8.6
 
 
 # Redis support
-django-redis
-redis
+django-redis==5.2.0
+redis==4.3.4
