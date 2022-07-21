@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
-
+import environ
+env = environ.Env()
 
 class Command(BaseCommand):
     help = 'Automatically create super user'
